@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
 
 namespace Enemies
 {
@@ -14,7 +15,8 @@ namespace Enemies
 		[SerializeField] private float speed;
 		[Min(0)]
 		[SerializeField] private float minimumDistance = 0.2f;
-		
+
+		[SerializeField] [Min(0)] private float rotationDegreesPerSecond = 10;
 		[Header("Search For Player Settings")]
 		[Min(0)]
 		[SerializeField] private float maxSearchDistance = 100;
@@ -66,6 +68,10 @@ namespace Enemies
 
 			//movement
 			_rigidbody2D.MovePosition(Vector3.MoveTowards(transform.position, currentGoalPosition, speed * Time.fixedDeltaTime));
+
+			var desiredFacing = (currentGoalPosition - transform.position).normalized;
+			var angleToFacing = Vector3.Angle(transform.transform.right, desiredFacing);
+			_rigidbody2D.MoveRotation(angleToFacing*Time.fixedDeltaTime * rotationDegreesPerSecond);
 		}
 
 
