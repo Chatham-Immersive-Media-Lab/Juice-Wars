@@ -72,6 +72,10 @@ namespace Enemies
 			var desiredFacing = (currentGoalPosition - transform.position).normalized;
 			var angleToFacing = Vector3.Angle(transform.transform.right, desiredFacing);
 			_rigidbody2D.MoveRotation(angleToFacing*Time.fixedDeltaTime * rotationDegreesPerSecond);
+			if (foundPlayer)
+			{
+				//change speed when "On the hunt!"
+			}
 		}
 
 
@@ -85,6 +89,12 @@ namespace Enemies
 		}
 		public void SearchForPlayer()
 		{
+			//player got destroyed lol
+			if (_player == null)
+			{
+				foundPlayer = false;
+				return;
+			}
 			RaycastHit2D hit;
 			hit = Physics2D.Raycast(transform.position, _player.position - transform.position, maxSearchDistance,_castForPlayerLayerMask);
 			if (hit.collider != null)

@@ -9,6 +9,7 @@ namespace Feedbacks
 	public class Feedback
 	{
 		public GameObject PrefabToSpawn;
+		public AudioSource AudioSource;
 		public UnityEvent Event;
 
 		public void Invoke(Vector3 position)
@@ -17,6 +18,11 @@ namespace Feedbacks
 			if (PrefabToSpawn != null)
 			{
 				GameObject.Instantiate(PrefabToSpawn, position, PrefabToSpawn.transform.rotation);
+			}
+
+			if (AudioSource != null)
+			{
+				AudioSource.Play();
 			}
 		}
 	}

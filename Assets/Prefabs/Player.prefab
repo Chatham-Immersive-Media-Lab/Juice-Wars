@@ -41,7 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3589911186858009314}
   - component: {fileID: 3589911186858009315}
-  - component: {fileID: 5921845874973476196}
+  - component: {fileID: 7617090296810608806}
   - component: {fileID: 3589911186858009316}
   - component: {fileID: 3589911186858009317}
   - component: {fileID: 3589911186858009318}
@@ -90,7 +90,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &5921845874973476196
+--- !u!114 &7617090296810608806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -99,16 +99,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3589911186858009319}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fff910aa90a4254967d07afe3e59062, type: 3}
+  m_Script: {fileID: 11500000, guid: 606072a432ffa094ab295d725d5143b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onTakeDamage:
+  secondsToWaitAfterDeathToDestroy: 0
+  OnTakeDamage:
     PrefabToSpawn: {fileID: 0}
+    AudioSource: {fileID: 0}
     Event:
       m_PersistentCalls:
         m_Calls: []
-  onDie:
+  OnDie:
     PrefabToSpawn: {fileID: 0}
+    AudioSource: {fileID: 0}
     Event:
       m_PersistentCalls:
         m_Calls: []

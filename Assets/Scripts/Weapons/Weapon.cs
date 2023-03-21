@@ -7,12 +7,15 @@ namespace Weapons
 	[CreateAssetMenu(fileName = "Weapon", menuName = "TopDown/Weapon", order = 0)]
 	public class Weapon : ScriptableObject
 	{
-
 		//Editable in Unity
+		[Header("Bullet Settings")]
 		[SerializeField] private GameObject bulletPrefab;
-		[SerializeField] private int prepopulatePoolCount = 0;
 		[SerializeField] private float bulletSpeed;
 		[Min(0)] [SerializeField] private float maxFireFrequency;
+		//
+		[Header("Pool Settings")]
+		[SerializeField] private bool usePooler = true;
+		[SerializeField] private int prepopulatePoolCount = 10;
 
 		//private variables
 		private List<Bullet> _pool;
@@ -21,7 +24,10 @@ namespace Weapons
 		{
 			_pool = new List<Bullet>();
 			_fireTimer = maxFireFrequency;
-			PrepopulatePool(prepopulatePoolCount);
+			if (usePooler)
+			{
+				PrepopulatePool(prepopulatePoolCount);
+			}
 		}
 
 		public virtual void Fire(Vector3 position, Vector2 direction)
@@ -47,20 +53,30 @@ namespace Weapons
 		}
 		public Bullet CreateBullet(Vector3 position, Quaternion rotation)
 		{
-			foreach (var bullet in _pool)
+			if (usePooler)
 			{
-				if (!bullet.gameObject.activeInHierarchy)
+				foreach (var bullet in _pool)
 				{
-					bullet.ResetBullet();
-					bullet.transform.position = position;
-					bullet.transform.rotation = rotation;
-					return bullet;
+					if (!bullet.gameObject.activeInHierarchy)
+					{
+						bullet.ResetBullet();
+						bullet.transform.position = position;
+						bullet.transform.rotation = rotation;
+						return bullet;
+					}
 				}
 			}
 
+			//when we dont have one in the pool... OR we just aren't using a pooler.
 			GameObject newPooledObject = Instantiate(bulletPrefab, position, rotation);
 			Bullet newBullet = newPooledObject.GetComponent<Bullet>();
-			_pool.Add(newBullet);
+			
+			
+			if (usePooler)
+			{
+				_pool.Add(newBullet);
+			}
+
 			return newBullet;
 		}
 

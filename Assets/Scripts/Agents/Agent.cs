@@ -5,9 +5,13 @@ using System.Dynamic;
 using Feedbacks;
 using UnityEngine;
 using UnityEngine.Events;
-public class EnemyBase : MonoBehaviour
+/// <summary>
+/// An agent is a thing that has health and can die. Like players or enemies.
+/// </summary>
+public class Agent : MonoBehaviour
 {
-	[Header("Enemy Settings")]
+	[Header("Enemy Settings")] 
+	[SerializeField] private float maxHealth;
 	private float health = 10;
 
 	[Tooltip("Leave at 0 to just destroy the object instantly.")]
@@ -21,9 +25,18 @@ public class EnemyBase : MonoBehaviour
 	//
 	private void Awake()
 	{
+		health = maxHealth;
 		_collider2D = GetComponentInChildren<Collider2D>();
 	}
 
+	public float GetPercentageHealth()
+	{
+		if (maxHealth == 0)
+		{
+			return 0;
+		}
+		return health / maxHealth;
+	}
 	public virtual void OnCollisionEnter2D(Collision2D other)
 	{
 		var bullet = other.gameObject.GetComponent<Bullet>();

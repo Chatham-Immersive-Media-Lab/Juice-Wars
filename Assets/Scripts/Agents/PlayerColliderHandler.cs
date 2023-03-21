@@ -7,11 +7,11 @@ namespace Agents
 	public class PlayerColliderHandler : MonoBehaviour
 	{
 
-		private Player _player;
+		private Agent _player;
 
 		private void Awake()
 		{
-			_player = GetComponentInParent<Player>();
+			_player = GetComponentInParent<Agent>();
 		}
 
 		private void OnCollisionEnter2D(Collision2D col)
