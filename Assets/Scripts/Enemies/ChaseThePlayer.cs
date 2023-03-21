@@ -31,10 +31,12 @@ namespace Enemies
 		private bool isActive;
 		private Coroutine searchRoutine;
 		//
-		
+
+		private FireAtPlayer _weaponHandler;
 		private Rigidbody2D _rigidbody2D;
 		private void Awake()
 		{
+			_weaponHandler = GetComponent<FireAtPlayer>();
 			_rigidbody2D = GetComponent<Rigidbody2D>();
 			isActive = true;
 			foundPlayer = false;
@@ -86,6 +88,10 @@ namespace Enemies
 				{
 					currentGoalPosition = hit.transform.position;
 					foundPlayer = true;
+					if (_weaponHandler != null)
+					{
+						_weaponHandler.SetFiring(true);
+					}
 				}
 				else
 				{
@@ -96,6 +102,10 @@ namespace Enemies
 					foundPlayer = false;
 					//stop moving
 					currentGoalPosition = transform.position;
+					if (_weaponHandler != null)
+					{
+						_weaponHandler.SetFiring(false);
+					}
 				}
 			}
 			else

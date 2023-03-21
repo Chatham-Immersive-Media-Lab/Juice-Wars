@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 019877603eb4499e921384828e8f822e, type: 3}
-  m_Name: Simple Bullet
+  m_Name: Simple Enemy Canon
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 8700348767314658189, guid: 2c974198ca9d91e4abb336f7baa26de3, type: 3}
-  prepopulatePoolCount: 0
-  bulletSpeed: 5
+  bulletPrefab: {fileID: 8700348767314658189, guid: ac680ae77a67d4a4f83cb52ba4db5de1, type: 3}
+  prepopulatePoolCount: 5
+  bulletSpeed: 3
   maxFireFrequency: 0.75

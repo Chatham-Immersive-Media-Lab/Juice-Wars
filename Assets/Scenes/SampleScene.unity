@@ -797,6 +797,7 @@ GameObject:
   - component: {fileID: 1510327788}
   - component: {fileID: 1510327787}
   - component: {fileID: 1510327786}
+  - component: {fileID: 1510327793}
   m_Layer: 8
   m_Name: Chase Enemy
   m_TagString: Untagged
@@ -978,6 +979,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1510327793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1510327785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1adb1b578a684f1099e45bec2cedcbe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _active: 1
+  _weapon: {fileID: 11400000, guid: fcc34034dbca7fb41be63ef8b2818d6e, type: 2}
+  bulletSpawnLocation: {fileID: 0}
 --- !u!1 &1686895658
 GameObject:
   m_ObjectHideFlags: 0
