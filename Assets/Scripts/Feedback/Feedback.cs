@@ -8,10 +8,17 @@ namespace Feedbacks
 	[Serializable]
 	public class Feedback
 	{
-		public GameObject PrefabToSpawn;
-		public AudioSource AudioSource;
+		[Header("Optional Events")]
 		public UnityEvent Event;
+		[Header("Optional Prefab Instantiation Settings")]
+		public GameObject PrefabToSpawn;
+		[Header("Optional Audio Settings")]
+		public AudioSource AudioSource;
+		[Header("Optional Animator Settings")]
+		public Animator Animator;
 
+		public string TriggerName;
+		
 		public void Invoke(Vector3 position)
 		{
 			Event.Invoke();
@@ -23,6 +30,11 @@ namespace Feedbacks
 			if (AudioSource != null)
 			{
 				AudioSource.Play();
+			}
+
+			if (Animator != null)
+			{
+				Animator.SetTrigger(TriggerName);	
 			}
 		}
 	}

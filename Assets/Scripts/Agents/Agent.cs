@@ -1,10 +1,5 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Dynamic;
 using Feedbacks;
 using UnityEngine;
-using UnityEngine.Events;
 /// <summary>
 /// An agent is a thing that has health and can die. Like players or enemies.
 /// </summary>
