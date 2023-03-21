@@ -41,6 +41,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3589911186858009314}
   - component: {fileID: 3589911186858009315}
+  - component: {fileID: 5921845874973476196}
   - component: {fileID: 3589911186858009316}
   - component: {fileID: 3589911186858009317}
   - component: {fileID: 3589911186858009318}
@@ -89,6 +90,28 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &5921845874973476196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589911186858009319}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fff910aa90a4254967d07afe3e59062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onTakeDamage:
+    PrefabToSpawn: {fileID: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
+  onDie:
+    PrefabToSpawn: {fileID: 0}
+    Event:
+      m_PersistentCalls:
+        m_Calls: []
 --- !u!114 &3589911186858009316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +181,7 @@ GameObject:
   - component: {fileID: 3589911187403358488}
   - component: {fileID: 3589911187403358566}
   - component: {fileID: 3589911187403358567}
+  - component: {fileID: 8229710722925893447}
   m_Layer: 6
   m_Name: Player Visuals
   m_TagString: Untagged
@@ -261,3 +285,15 @@ PolygonCollider2D:
       - {x: -0.5, y: 0}
       - {x: 0, y: -0.25}
       - {x: 0.5, y: 0}
+--- !u!114 &8229710722925893447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3589911187403358489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a657b88abc154b9c81cc0d7ea50ad990, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
