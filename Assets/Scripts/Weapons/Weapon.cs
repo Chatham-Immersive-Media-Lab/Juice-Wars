@@ -16,9 +16,9 @@ namespace Weapons
 		[Header("Pool Settings")]
 		[SerializeField] private bool usePooler = true;
 		[SerializeField] private int prepopulatePoolCount = 10;
-
-		//private variables
-		private List<Bullet> _pool;
+		[SerializeField] private AudioClip _weaponSound;
+        //private variables
+        private List<Bullet> _pool;
 		private float _fireTimer;
 		public void InitWeapon()
 		{
@@ -29,8 +29,8 @@ namespace Weapons
 				PrepopulatePool(prepopulatePoolCount);
 			}
 		}
-
-		public virtual void Fire(Vector3 position, Vector2 direction)
+  
+        public virtual bool Fire(Vector3 position, Vector2 direction)
 		{
 			if (_fireTimer >= maxFireFrequency)
 			{
@@ -38,7 +38,9 @@ namespace Weapons
 				Rigidbody2D bulletRB = bullet.GetComponent<Rigidbody2D>();
 				bulletRB.velocity = direction.normalized * bulletSpeed;
 				_fireTimer = 0;
-			}
+                return true;
+            }
+			return false;
 		}
 
 		private void PrepopulatePool(int numberOfBulletsInPool)

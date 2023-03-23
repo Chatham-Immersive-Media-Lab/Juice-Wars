@@ -1,6 +1,5 @@
 using Cinemachine;
 using Feedbacks;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -45,7 +44,10 @@ public class PlayerWeaponHandler : MonoBehaviour
         if (_weapons[currentWeaponIndex].Fire(spawnLocation, direction))
         {
             feedback.Invoke(transform.position);
-            _recoilCameraImpulseSource.GenerateImpulseAtPositionWithVelocity(spawnLocation, -direction);
+            if(_recoilCameraImpulseSource != null)
+            {
+                _recoilCameraImpulseSource.GenerateImpulseAtPositionWithVelocity(spawnLocation, -direction);
+            }
         };
 
     }
