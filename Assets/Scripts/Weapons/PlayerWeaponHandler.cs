@@ -1,3 +1,5 @@
+using Cinemachine;
+using Feedbacks;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,12 +11,15 @@ public class PlayerWeaponHandler : MonoBehaviour
     [Header("Player Config")]
     [SerializeField] private Transform bulletSpawnLocation;
 
+
+
     [Header("Weapon Config")] [SerializeField]
     private Weapon[] _weapons;
 
     private int currentWeaponIndex = 0;
-    
-    
+
+    public Feedback feedback;
+    public CinemachineImpulseSource _recoilCameraImpulseSource;//THis is the recoil camera impulse source, bill.
     private void Start()
     {
         if (_weapons.Length == 0)
@@ -37,9 +42,15 @@ public class PlayerWeaponHandler : MonoBehaviour
 
         //ternery operator to choose the bulletSpawnLocation, or our transform.position if its null. 
         var spawnLocation = bulletSpawnLocation == null ? transform.position : bulletSpawnLocation.position;
-        _weapons[currentWeaponIndex].Fire(spawnLocation, direction);
+        if (_weapons[currentWeaponIndex].Fire(spawnLocation, direction))
+        {
+            feedback.Invoke(transform.position);
+            _recoilCameraImpulseSource.GenerateImpulseAtPositionWithVelocity(spawnLocation, -direction);
+        };
+
     }
 
+    //This switches to the next weapon (in the _weapons array). If you only have one weapon, it won't do anything, BILL
     public void SwitchToNextWeapon()
     {
         currentWeaponIndex++;

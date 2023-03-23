@@ -23,16 +23,16 @@ namespace Input
 			//Check for movement
 			Vector2 direction = new Vector2(UnityEngine.Input.GetAxisRaw("Horizontal"), UnityEngine.Input.GetAxisRaw("Vertical"));
 			direction.Normalize();
+            _agent.Move(direction);
 
-			//Check for rotation
-			Vector2 mousePos = (Vector2)_camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
-			var facingDir = mousePos- (Vector2)transform.position;
-			facingDir.Normalize();
-			_agent.Move(direction);
-			_agent.RotateTo(facingDir);
-			
-			//fire weapon
-			if (UnityEngine.Input.GetMouseButton(0))
+            //Check for rotation
+            Vector2 mousePos = (Vector2)_camera.ScreenToWorldPoint(UnityEngine.Input.mousePosition);
+            var facingDir = mousePos - (Vector2)transform.position;
+            facingDir.Normalize();
+
+            _agent.RotateTo(facingDir);
+            //fire weapon
+            if (UnityEngine.Input.GetMouseButton(0))
 			{
 				//should use _agent.facingDir, but that isn't being updated after the collision event.
 				_playerWeapon.Fire(transform.right);
@@ -48,5 +48,5 @@ namespace Input
 				_playerWeapon.SwitchToNextWeapon();
 			}
 		}
-	}
+    }
 }

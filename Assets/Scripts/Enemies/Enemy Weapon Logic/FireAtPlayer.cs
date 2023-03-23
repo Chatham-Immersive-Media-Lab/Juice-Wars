@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Feedbacks;
+using System;
 using UnityEngine;
 using Weapons;
 
@@ -10,6 +11,8 @@ namespace Enemies
 		[SerializeField] private Weapon _weapon;
 		[SerializeField] private Transform bulletSpawnLocation;
 		private Transform _player;
+		public Feedback _fireFeedback;
+
 		private void Start()
 		{
 			_player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -24,7 +27,10 @@ namespace Enemies
 				var spawnLocation = bulletSpawnLocation == null ? transform.position : bulletSpawnLocation.position;
 				var playerDirection = _player.position - transform.position;
 				//fire continuously, let weapon cooldown determine firing rate.
-				_weapon.Fire(spawnLocation,playerDirection);
+				if (_weapon.Fire(spawnLocation, playerDirection))
+				{
+                    _fireFeedback.Invoke(spawnLocation);
+                }
 			}
 		}
 
